@@ -1,19 +1,31 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { useUser } from "@/context/UserContext";
 
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { setUsername: setGlobalUsername } = useUser();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For demo purposes, allow any login
+    if (!username.trim()) {
+      toast({
+        title: "Username required",
+        description: "Please enter your username to continue.",
+        variant: "destructive",
+      });
+      return;
+    }
+    setGlobalUsername(username);
     toast({
       title: "Welcome back!",
       description: "Successfully logged in to PlantGuard.",
@@ -23,6 +35,17 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="space-y-2">
+        <Label htmlFor="username">Username</Label>
+        <Input
+          id="username"
+          type="text"
+          placeholder="Enter your username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </div>
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input

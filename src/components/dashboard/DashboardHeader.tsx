@@ -1,8 +1,11 @@
+
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "@/context/UserContext";
 
 export const DashboardHeader = () => {
   const navigate = useNavigate();
+  const { username } = useUser();
 
   return (
     <header className="bg-white shadow">
@@ -10,7 +13,7 @@ export const DashboardHeader = () => {
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-forest-dark">PlantGuard Dashboard</h1>
-            <p className="text-gray-600">Welcome back, Farmer</p>
+            <p className="text-gray-600">Welcome back, {username}</p>
           </div>
           <Button
             variant="outline"
