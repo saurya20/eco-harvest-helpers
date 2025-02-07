@@ -1,7 +1,7 @@
+
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { MetricsGrid } from "@/components/dashboard/MetricsGrid";
 import { UploadSection } from "@/components/dashboard/UploadSection";
-import { RecommendationsCard } from "@/components/dashboard/RecommendationsCard";
 import { BasicRecommendationsCard } from "@/components/dashboard/BasicRecommendationsCard";
 import { HealthTrendsChart } from "@/components/charts/HealthTrendsChart";
 
@@ -13,9 +13,6 @@ const Dashboard = () => {
         <MetricsGrid />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <UploadSection />
-          <RecommendationsCard />
-        </div>
-        <div className="mt-6">
           <BasicRecommendationsCard />
         </div>
         <div className="mt-6">
